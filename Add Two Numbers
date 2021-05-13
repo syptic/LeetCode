@@ -10,23 +10,25 @@ class Solution:
         while (l1 != None):
             arr1.append(l1.val)
             l1 = l1.next
-            
+    
         while(l2 != None):
             arr2.append(l2.val)
             l2 = l2.next
             
         diff = len(arr1) - len(arr2)
         sArr = arr2 if diff>0 else arr1
-            
-        for i in range(diff):
+        for i in range(abs(diff)):
             sArr.append(0)
+        print(sArr)
         l = []
         sum = 0
         carry = 0
-        for i in range(len(arr1)):
+        for i in range(len(sArr)):
             sum = int((carry + arr1[i] + arr2[i]) % 10)
-            carry = int((arr1[i] + arr2[i])/10)
+            carry = int((carry + arr1[i] + arr2[i])/10)
             l.append(sum)
+        if carry != 0:
+            l.append(carry)
         l.reverse()
         lx = None
         for i in l:
@@ -34,5 +36,3 @@ class Solution:
         return lx
             
        
-            
-        
